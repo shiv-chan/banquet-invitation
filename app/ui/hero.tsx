@@ -11,7 +11,7 @@ export default function Hero() {
 	return (
 		<>
 			<p
-				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2 md:text-left`}
+				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2 md:text-left lg:text-2xl`}
 			>
 				To The Wedding Celebration of Kaho & Jade
 			</p>
@@ -21,15 +21,26 @@ export default function Hero() {
 					alt='kaho-and-jade-at-cafe'
 					width={1280}
 					height={960}
-					className='w-100 h-72 object-cover sm:h-96 md:w-[354px] md:h-72'
+					className='w-100 h-72 object-cover sm:h-96  md:h-72'
 					placeholder='blur'
 					blurDataURL={rgbDataURL(181, 181, 181)}
 				/>
-				<figcaption className='font-serif text-xs sm:text-sm'>
+				<figcaption className='font-serif text-[10px] sm:text-sm'>
 					{married ? "We married" : "We're going to marry"} on August 29, 2024
 					in Vancouver, BC
 				</figcaption>
 			</figure>
+			<div className='mb-8 font-serif text-sm sm:text-base md:mb-4'>
+				<p>
+					Kaho and Jade {married ? "had" : "are going to have"} an intimate
+					wedding ceremony in Vancouver on August 29, 2024 with immediate
+					family.
+				</p>
+				<p>
+					We would like to formally invite you to our larger wedding banquet in
+					Calgary on October 12, 2024.
+				</p>
+			</div>
 		</>
 	);
 }

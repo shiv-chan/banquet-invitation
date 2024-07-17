@@ -4,15 +4,15 @@ export default function RSVP() {
 	return (
 		<div className='flex flex-col items-center justify-center border border-solid border-black py-3 gap-3 sm:gap-4 sm:py-4 md:gap-6 md:py-8'>
 			<h2
-				className={`${merriweather.className} uppercase bold italic leading-none sm:text-lg md:text-2xl`}
+				className={`${merriweather.className} uppercase bold italic leading-none text-lg sm:text-xl lg:text-2xl`}
 			>
 				Save the date
 			</h2>
-			<p className='font-serif text-center text-xs max-w-56 sm:text-sm'>
+			<p className='font-serif text-center text-sm max-w-56 sm:text-base lg:text-base'>
 				Please respond with your availability to attend before the 25th of
 				September.
 			</p>
-			<button className='font-serif border border-solid border-black bg-black text-white w-32 text-base bold sm:text-lg'>
+			<button className='font-serif border border-solid border-black bg-black text-white w-32 text-base bold sm:text-lg lg:text-2xl lg:p-1 lg:w-36'>
 				RSVP
 			</button>
 		</div>

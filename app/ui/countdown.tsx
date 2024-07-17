@@ -6,23 +6,29 @@ export default function Countdown() {
 	const today = new Date() as any;
 	const eventDate = new Date(2024, 9, 12) as any;
 	const oneDay = 60 * 60 * 24 * 1000;
-	const diffDays = Math.floor((eventDate - today) / oneDay) + 1;
+	const diffDays = Math.floor((eventDate - today) / oneDay);
 
 	let countdown;
-	if (diffDays >= 0) {
+	if (diffDays > 0) {
 		countdown = (
 			<>
-				<h2 className='uppercase text-base sm:text-lg'>
-					Looking forward to meeting you in...
+				<h2 className='uppercase text-lg sm:text-xl lg:text-2xl'>
+					Looking forward to meeting you {diffDays == 0 ? "" : "in..."}
 				</h2>
-				<p className='italic text-2xl my-3.5 text-center sm:text-[28px] md:my-6'>
-					{diffDays} days
+				<p className='italic text-2xl my-3.5 text-center sm:text-[28px] md:my-6 lg:text-3xl'>
+					{diffDays} day{diffDays > 1 ? "s" : ""}
 				</p>
 			</>
 		);
+	} else if (diffDays === 0) {
+		countdown = (
+			<h2 className='uppercase text-lg italic sm:text-xl lg:text-2xl'>
+				Looking forward to meeting you tonight!
+			</h2>
+		);
 	} else {
 		countdown = (
-			<h2 className='text-base md:text-center md:mb-2 md:text-lg'>
+			<h2 className='text-lg sm:text-center md:mb-2 sm:text-xl lg:text-2xl'>
 				Thank you for coming to our celebration!
 			</h2>
 		);
