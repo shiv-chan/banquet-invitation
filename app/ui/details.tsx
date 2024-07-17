@@ -2,18 +2,20 @@ import { merriweather } from "@/app/ui/fonts";
 
 export default function Details() {
 	return (
-		<div className='font-serif text-xs'>
+		<div className='font-serif text-xs sm:text-sm sm:grid sm:grid-cols-2 sm:gap-x-6'>
 			<h2
-				className={`${merriweather.className} uppercase bold text-base text-center`}
+				className={`${merriweather.className} uppercase bold text-base text-center sm:text-lg sm:col-span-2`}
 			>
 				The details
 			</h2>
-			<p className='text-center my-5'>Sunday, October 13, 2024 7:00pm</p>
-			<div className='text-center my-5'>
+			<p className='text-center my-5 sm:col-span-2'>
+				Sunday, October 13, 2024 7:00pm
+			</p>
+			<div className='text-center my-5 sm:col-span-2'>
 				<p>Ginger Beef Bistro House Marlborough</p>
 				<p>228 28 St SE, Calgary, AB T2A 6J9</p>
 			</div>
-			<div className='my-5'>
+			<div className='my-5 sm:row-start-4'>
 				<h3 className='font-bold text-center mb-1.5'>By Car</h3>
 				<ol className='list-disc pl-4'>
 					<li className='mb-4'>
@@ -33,14 +35,14 @@ export default function Details() {
 					</li>
 				</ol>
 			</div>
-			<div className='my-5'>
+			<div className='my-5 sm:col-span-2 sm:row-span-1'>
 				<h3 className='font-bold text-center mb-1.5'>Parking</h3>
-				<p className='text-center'>
+				<p className='text-center sm:text-left'>
 					Free parking is available in the lot adjacent to the restaurant.
 					Street parking is also available on Gourmet Lane.
 				</p>
 			</div>
-			<div className='my-5'>
+			<div className='my-5 sm:row-start-4'>
 				<h3 className='font-bold text-center mb-1.5'>By Public Transport</h3>
 				<ol className='list-disc pl-4'>
 					<li className='mb-4'>

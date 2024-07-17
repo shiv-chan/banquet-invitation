@@ -13,6 +13,10 @@ const config: Config = {
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			screens: {
+				sm: "480px",
+				xl: "1200px",
+			},
 		},
 		keyframes: {
 			shimmer: {

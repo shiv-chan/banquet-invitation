@@ -10,7 +10,9 @@ export default function Hero() {
 
 	return (
 		<>
-			<p className={`${merriweather.className} uppercase bold text-lg py-1`}>
+			<p
+				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2`}
+			>
 				To The Wedding Celebration of Kaho & Jade
 			</p>
 			<figure className='mb-4'>
@@ -19,14 +21,13 @@ export default function Hero() {
 					alt='kaho-and-jade-at-cafe'
 					width={1280}
 					height={960}
-					className='w-100 h-72 grayscale object-cover'
-					style={{ objectViewBox: "inset(15% 30% 25% 27%)" }}
+					className='w-100 h-72 object-cover sm:h-96'
 					placeholder='blur'
 					blurDataURL={rgbDataURL(181, 181, 181)}
 				/>
-				<figcaption className='font-serif text-xs'>
-					{married ? "We’ve got married" : "We're going to marry"} on August 29,
-					2024 in Vancouver, BC
+				<figcaption className='font-serif text-xs sm:text-sm'>
+					{married ? "We married" : "We're going to marry"} on August 29, 2024
+					in Vancouver, BC
 				</figcaption>
 			</figure>
 		</>
