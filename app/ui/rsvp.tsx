@@ -2,9 +2,9 @@ import { merriweather } from "@/app/ui/fonts";
 
 export default function RSVP() {
 	return (
-		<div className='flex flex-col items-center justify-center border border-solid border-black py-3 gap-3 sm:gap-4 sm:py-4'>
+		<div className='flex flex-col items-center justify-center border border-solid border-black py-3 gap-3 sm:gap-4 sm:py-4 md:gap-6 md:py-8'>
 			<h2
-				className={`${merriweather.className} uppercase bold italic leading-none sm:text-lg`}
+				className={`${merriweather.className} uppercase bold italic leading-none sm:text-lg md:text-2xl`}
 			>
 				Save the date
 			</h2>

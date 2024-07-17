@@ -2,7 +2,7 @@ import "@/app/ui/global.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Save the Date! | Kaho + Jade",
+	title: "The Wedding Celebration of Kaho + Jade",
 	description: "The Wedding Cerebration of Kaho and Jade",
 };
 

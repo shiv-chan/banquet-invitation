@@ -11,7 +11,7 @@ export default function Hero() {
 	return (
 		<>
 			<p
-				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2`}
+				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2 md:text-left`}
 			>
 				To The Wedding Celebration of Kaho & Jade
 			</p>
@@ -21,7 +21,7 @@ export default function Hero() {
 					alt='kaho-and-jade-at-cafe'
 					width={1280}
 					height={960}
-					className='w-100 h-72 object-cover sm:h-96'
+					className='w-100 h-72 object-cover sm:h-96 md:w-[354px] md:h-72'
 					placeholder='blur'
 					blurDataURL={rgbDataURL(181, 181, 181)}
 				/>
