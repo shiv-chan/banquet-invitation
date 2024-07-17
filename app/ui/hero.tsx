@@ -25,7 +25,7 @@ export default function Hero() {
 					placeholder='blur'
 					blurDataURL={rgbDataURL(181, 181, 181)}
 				/>
-				<figcaption className='font-serif text-[10px] sm:text-sm'>
+				<figcaption className='font-serif text-[10px] italic sm:text-sm'>
 					{married ? "We married" : "We're going to marry"} on August 29, 2024
 					in Vancouver, BC
 				</figcaption>

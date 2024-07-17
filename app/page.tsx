@@ -18,7 +18,7 @@ export default function Home() {
 				<p>7:00 PM</p>
 			</div>
 			<p
-				className={`${merriweather.className} text-center uppercase italic bold text-3xl border-b border-solid border-b-black px-4 py-2 lg:text-4xl lg:scroll-py-3`}
+				className={`${merriweather.className} text-center uppercase italic bold text-3xl border-b border-solid border-b-black px-4 py-2 lg:text-4xl lg:py-3`}
 			>
 				You are invited
 			</p>
