@@ -9,11 +9,22 @@ export default function Details() {
 				The details
 			</h2>
 			<p className='text-center my-5 sm:col-span-2 md:my-2 sm:text-base lg:my-3'>
-				Saturday, October 12, 2024 7:00pm
+				Saturday, October 12, 2024
+				<br />
+				Doors open at 5:30 pm
+				<br />
+				Dinner starts at 6:00 pm
 			</p>
 			<div className='text-center my-5 sm:col-span-2 md:my-2 sm:text-base lg:my-3'>
 				<p>Ginger Beef Bistro House Marlborough</p>
 				<p>228 28 St SE, Calgary, AB T2A 6J9</p>
+				<a
+					href='https://maps.google.com/maps?&daddr=228,%2028%20St%20SE%20Calgary,%20AB%20T2A%206J9%20Calgary%20CA'
+					target='_blank'
+					className='text-sky-500 font-bold'
+				>
+					Map
+				</a>
 			</div>
 			<div className='my-5 sm:row-start-4 md:my-4 sm:text-base lg:my-5'>
 				<h3 className='font-bold text-center mb-1.5'>By Car</h3>
