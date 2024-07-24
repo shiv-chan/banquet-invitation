@@ -83,8 +83,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 						<textarea
 							id={`diet-${guest.first}`}
 							name='diet'
-							rows='1'
-							cols='50'
+							rows={1}
+							cols={50}
 							className='font-serif w-full rounded-sm border-2 border-gray-200'
 						/>
 					</div>
@@ -99,8 +99,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 							<textarea
 								id={`diet-${company.first}`}
 								name='diet'
-								rows='1'
-								cols='50'
+								rows={1}
+								cols={50}
 								className='font-serif w-full rounded-sm border-2 border-gray-200'
 							/>
 						</div>
@@ -113,8 +113,8 @@ export default async function Page({ params }: { params: { id: string } }) {
 					<textarea
 						id='message'
 						name='message'
-						rows='5'
-						cols='50'
+						rows={5}
+						cols={50}
 						className='font-serif w-full rounded-sm border-2 border-gray-200'
 					/>
 				</div>
