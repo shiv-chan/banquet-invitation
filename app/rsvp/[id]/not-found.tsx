@@ -10,9 +10,7 @@ export default function NotFound() {
 				>
 					Oops! We can’t find you in the list.
 				</p>
-				<p>
-					Please make sure your name and email address are spelled correctly.
-				</p>
+				<p>Please make sure your name is spelled correctly.</p>
 			</div>
 			<Link
 				href='/rsvp'
