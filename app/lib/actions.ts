@@ -76,7 +76,7 @@ export async function searchGuest(prevState: State, formData: FormData) {
 		throw new Error("Failed to search a guest.");
 	}
 
-	if (RSVPd) {
+	if (RSVPd && guest_id) {
 		redirect(`/rsvp/${guest_id}/edit`);
 	}
 
