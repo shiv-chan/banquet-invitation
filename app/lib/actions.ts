@@ -193,8 +193,7 @@ export async function updateRSVP(
 				await sql`
 					UPDATE guests
 					SET rsvp = ${company.rsvp},
-						restrictions = ${company.diet},
-						message = ${message}
+						restrictions = ${company.diet}
 					WHERE id = ${key}
 				`;
 			});
