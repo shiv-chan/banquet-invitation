@@ -2,7 +2,7 @@ import { merriweather } from "@/app/ui/fonts";
 
 export default function Details() {
 	return (
-		<div className='font-serif text-sm sm:text-sm sm:grid sm:grid-cols-2 sm:gap-x-6 md:my-2 md:mx-4 md:flex md:flex-col'>
+		<div className='font-serif text-sm sm:text-sm md:my-2 md:mx-4 md:flex md:flex-col'>
 			<h2
 				className={`${merriweather.className} uppercase bold text-lg text-center sm:text-xl sm:col-span-2 md:my-2 lg:text-2xl`}
 			>
@@ -18,52 +18,30 @@ export default function Details() {
 			<div className='text-center my-5 sm:col-span-2 md:my-2 sm:text-base lg:my-3'>
 				<p>Ginger Beef Bistro House Marlborough</p>
 				<p>228 28 St SE, Calgary, AB T2A 6J9</p>
-				<a
-					href='https://maps.google.com/maps?&daddr=228,%2028%20St%20SE%20Calgary,%20AB%20T2A%206J9%20Calgary%20CA'
-					target='_blank'
-					className='text-sky-500 font-bold'
-				>
-					Map
-				</a>
 			</div>
 			<div className='my-5 sm:row-start-4 md:my-4 sm:text-base lg:my-5'>
-				<h3 className='font-bold text-center mb-1.5'>By Car</h3>
-				<ol className='list-disc pl-4 lg:pl-5'>
-					<li className='mb-4 lg:mb-5'>
-						From Downtown: Take Main Street north until you reach 5th Avenue.
-						Turn right onto 5th Avenue and continue for 2 miles. Turn left onto
-						Gourmet Lane. Our restaurant is located on the right side, just past
-						the park.
-					</li>
-					<li className='mb-4 md:m-0'>
-						From the Highway: Take Exit 45 off Highway 1. Merge onto Main Street
-						and head south for 3 miles. Turn left onto 5th Avenue, then continue
-						for 2 miles. Turn left onto Gourmet Lane. You&apos;ll find us on the
-						right side, just past the park.
-					</li>
-				</ol>
+				<div className='pl-4 lg:pl-5'>
+					<iframe
+						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.7007186156527!2d-113.99335869321521!3d51.05035962872515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717b5f930ab15f%3A0x3d18fa958a55b26c!2sGinger%20Beef%20Bistro%20House!5e0!3m2!1sen!2sca!4v1721876390845!5m2!1sen!2sca'
+						className='w-full h-80 border border-solid border-black'
+						allowFullScreen={undefined}
+						loading='lazy'
+						referrerPolicy='no-referrer-when-downgrade'
+					></iframe>
+				</div>
 			</div>
 			<div className='my-5 sm:col-span-2 sm:row-span-1 md:my-4 sm:text-base lg:my-5'>
 				<h3 className='font-bold text-center mb-1.5'>Parking</h3>
 				<p className='text-center sm:text-left sm:pl-4 lg:pl-5'>
 					Free parking is available in the lot adjacent to the restaurant.
-					Street parking is also available on Gourmet Lane.
 				</p>
 			</div>
 			<div className='my-5 sm:row-start-4 md:my-4 sm:text-base lg:my-5'>
 				<h3 className='font-bold text-center mb-1.5'>By Public Transport</h3>
-				<ol className='list-disc pl-4 lg:pl-5'>
-					<li className='mb-4 lg:mb-5'>
-						Bus: Take Bus 22 to the 5th Avenue stop. Walk east on 5th Avenue for
-						1 block and turn left onto Gourmet Lane. The restaurant is a short
-						walk on the right side.
-					</li>
-					<li className='mb-4 md:m-0'>
-						Subway: Take the Green Line to the Gourmet Station. Exit the station
-						and walk north on 5th Avenue for 2 blocks. Turn right onto Gourmet
-						Lane. The restaurant will be on your left.
-					</li>
-				</ol>
+				<p className='pl-4 lg:pl-5'>
+					The restaurant is conveniently located near the Franklin CTrain
+					station. Upon arrival, head north to reach the destination.
+				</p>
 			</div>
 		</div>
 	);

@@ -58,7 +58,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 					<div id='rsvp-error' aria-live='polite' aria-atomic='true'>
 						{state?.errors?.rsvp &&
 							state.errors.rsvp.map((error: string) => (
-								<p className='mt-2 text-sm italic text-red-500' key={error}>
+								<p className='mt-2 text-sm font-sans text-red-500' key={error}>
 									{error}
 								</p>
 							))}
