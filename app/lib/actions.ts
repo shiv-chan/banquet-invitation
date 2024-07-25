@@ -77,6 +77,7 @@ export async function searchGuest(prevState: State, formData: FormData) {
 	}
 
 	if (RSVPd && guest_id) {
+		revalidatePath(`/rsvp/${guest_id}`);
 		redirect(`/rsvp/${guest_id}/edit`);
 	}
 
