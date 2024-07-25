@@ -37,3 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 /app/lib/seed-data.ts
+/app/seed/
