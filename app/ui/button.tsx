@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,5 +17,31 @@ export function Button({ children, className, ...rest }: ButtonProps) {
 		>
 			{children}
 		</button>
+	);
+}
+
+import { useFormStatus } from "react-dom";
+
+interface SubmitButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	resolvedText: string;
+	pendingText: string;
+}
+
+export function SubmitButton({
+	resolvedText,
+	pendingText,
+	className,
+}: SubmitButtonProps) {
+	const { pending } = useFormStatus();
+
+	return (
+		<Button
+			type='submit'
+			className={clsx("w-full mt-8", className)}
+			disabled={pending}
+		>
+			{pending ? pendingText : resolvedText}
+		</Button>
 	);
 }

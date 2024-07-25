@@ -1,19 +1,9 @@
 "use client";
 
-import { Button } from "@/app/ui/button";
+import { SubmitButton } from "@/app/ui/button";
 import Link from "next/link";
-import { searchGuest, State } from "../lib/actions";
-import { useFormState, useFormStatus } from "react-dom";
-
-function SubmitButton() {
-	const { pending } = useFormStatus();
-
-	return (
-		<Button type='submit' className='w-full mt-8' disabled={pending}>
-			{pending ? "Searching..." : "Next"}
-		</Button>
-	);
-}
+import { searchGuest, State } from "@/app/lib/actions";
+import { useFormState } from "react-dom";
 
 export default function Page() {
 	const initialState: State = { message: null, errors: {} };
@@ -67,7 +57,7 @@ export default function Page() {
 						</p>
 					))}
 			</div>
-			<SubmitButton />
+			<SubmitButton resolvedText='Next' pendingText='Searching...' />
 			<Link
 				href='/'
 				className='mt-4 block text-center font-serif border border-solid border-black bg-white text-black w-full text-base bold sm:text-lg'
