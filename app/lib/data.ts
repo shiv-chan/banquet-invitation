@@ -16,12 +16,12 @@ export async function fetchGuest(id: string) {
 	}
 }
 
-export async function fetchCompanies(host_id: string, group_id: number) {
+export async function fetchCompanies(id: string, group_id: number) {
 	try {
 		const data = await sql<Guest>`
             SELECT *
             FROM guests
-            WHERE group_id = ${group_id} AND NOT id = ${host_id}
+            WHERE group_id = ${group_id} AND NOT id = ${id}
             ORDER BY first, last ASC;
         `;
 
