@@ -6,7 +6,7 @@ import { searchGuest, State } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
 
 export default function Page() {
-	const initialState: State = { message: null, errors: {} };
+	const initialState = { message: "", errors: {} };
 	const [state, formAction] = useFormState(searchGuest, initialState);
 
 	return (

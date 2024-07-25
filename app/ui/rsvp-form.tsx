@@ -14,7 +14,7 @@ interface RsvpFormProps {
 
 export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 	const updateRSVPWithID = updateRSVP.bind(null, guest.id, guest.group_id);
-	const initialState: State = { message: null, errors: {} };
+	const initialState = { message: "", errors: {} };
 	const [state, formAction] = useFormState(updateRSVPWithID, initialState);
 
 	return (
