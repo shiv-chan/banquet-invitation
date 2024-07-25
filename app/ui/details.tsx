@@ -38,7 +38,7 @@ export default function Details() {
 					<li className='mb-4 md:m-0'>
 						From the Highway: Take Exit 45 off Highway 1. Merge onto Main Street
 						and head south for 3 miles. Turn left onto 5th Avenue, then continue
-						for 2 miles. Turn left onto Gourmet Lane. You'll find us on the
+						for 2 miles. Turn left onto Gourmet Lane. You&apos;ll find us on the
 						right side, just past the park.
 					</li>
 				</ol>
