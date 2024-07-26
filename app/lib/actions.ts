@@ -24,16 +24,25 @@ const GuestSchema = z.object({
 			if (val === "1") return 1;
 		})
 		.pipe(z.coerce.boolean()),
-	restrictions: z.string().trim().nullable(),
-	message: z.string().trim().nullable(),
+	restrictions: z
+		.string()
+		.trim()
+		.nullable()
+		.transform(val => {
+			return val || null;
+		}),
+	message: z
+		.string()
+		.trim()
+		.nullable()
+		.transform(val => {
+			return val || null;
+		}),
 });
 
-const SearchGuest = GuestSchema.omit({
-	id: true,
-	group_id: true,
-	rsvp: true,
-	restrictions: true,
-	message: true,
+const SearchGuest = GuestSchema.pick({
+	first: true,
+	last: true,
 });
 
 export type State = {
@@ -87,6 +96,8 @@ export async function searchGuest(prevState: State, formData: FormData) {
 
 const UpdateRSVP = GuestSchema.pick({
 	rsvp: true,
+	restrictions: true,
+	message: true,
 });
 
 export async function updateRSVP(
@@ -109,6 +120,8 @@ export async function updateRSVP(
 
 	const validatedFields = UpdateRSVP.safeParse({
 		rsvp: formData.get("rsvp"),
+		restrictions: formData.get("diet"),
+		message: formData.get("message"),
 	});
 
 	if (!validatedFields.success) {
@@ -118,9 +131,7 @@ export async function updateRSVP(
 		};
 	}
 
-	let mainRsvp: boolean | null = null;
-	let mainDiet: string | null = null;
-	let message: string | null = null;
+	let { rsvp, restrictions, message } = validatedFields.data;
 	let companiesMap = new Map<
 		string,
 		{ rsvp?: boolean | null; diet?: string | null }
@@ -151,8 +162,6 @@ export async function updateRSVP(
 						...companiesMap.get(company_id),
 						rsvp: true,
 					});
-				} else {
-					mainRsvp = validatedFields.data.rsvp;
 				}
 			}
 			if (key.includes("diet")) {
@@ -162,22 +171,17 @@ export async function updateRSVP(
 						...companiesMap.get(company_id),
 						diet: (<string>rawFormData[key]).trim() || null,
 					});
-				} else {
-					mainDiet = (<string>rawFormData[key]).trim() || null;
 				}
-			}
-			if (key === "message") {
-				message = (<string>rawFormData[key]).trim() || null;
 			}
 		}
 	}
 
 	// update the main guest's columns
 	try {
-		if (!mainRsvp) mainDiet = null;
+		if (!rsvp) restrictions = null;
 		await sql`
 			UPDATE guests
-			SET	rsvp = ${mainRsvp}, restrictions = ${mainDiet}, message = ${message}
+			SET	rsvp = ${rsvp}, restrictions = ${restrictions}, message = ${message}
 			WHERE id = ${id}
 		`;
 	} catch (e) {
