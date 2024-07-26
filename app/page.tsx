@@ -15,7 +15,7 @@ export default function Home() {
 			<div className='font-serif text-xs border-y border-solid border-y-black flex justify-between px-4 py-1 sm:text-sm lg:text-base'>
 				<p>Calgary AB</p>
 				<p>Saturday, October 12, 2024</p>
-				<p>7:00 PM</p>
+				<p>6:00 PM</p>
 			</div>
 			<p
 				className={`${merriweather.className} text-center uppercase italic bold text-3xl border-b border-solid border-b-black px-4 py-2 lg:text-4xl lg:py-3`}

@@ -1,4 +1,5 @@
 import { merriweather } from "@/app/ui/fonts";
+import Link from "next/link";
 
 export default function RSVP() {
 	return (
@@ -9,12 +10,15 @@ export default function RSVP() {
 				Save the date
 			</h2>
 			<p className='font-serif text-center text-sm max-w-56 sm:text-base lg:text-base'>
-				Please respond with your availability to attend before the 25th of
+				Please respond with your availability to attend before the 21st of
 				September.
 			</p>
-			<button className='font-serif border border-solid border-black bg-black text-white w-32 text-base bold sm:text-lg lg:text-2xl lg:p-1 lg:w-36'>
+			<Link
+				href='/rsvp'
+				className='text-center font-serif border border-solid border-black bg-black text-white w-32 text-base bold sm:text-lg lg:text-2xl lg:p-1 lg:w-36'
+			>
 				RSVP
-			</button>
+			</Link>
 		</div>
 	);
 }
