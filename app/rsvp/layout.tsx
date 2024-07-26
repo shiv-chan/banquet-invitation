@@ -1,4 +1,9 @@
 import { merriweather } from "@/app/ui/fonts";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+	maximumScale: 1,
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
