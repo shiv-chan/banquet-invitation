@@ -8,3 +8,12 @@ export type Guest = {
 	restrictions: string | null;
 	message: string | null;
 };
+
+export type Log = {
+	id: string;
+	first: string;
+	last: string;
+	action: "Search" | "RSVP";
+	details: Object;
+	timestamp: Date;
+};
