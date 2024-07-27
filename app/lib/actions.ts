@@ -71,13 +71,26 @@ export async function searchGuest(prevState: State, formData: FormData) {
 	let RSVPd: boolean = false;
 	const { first, last } = validatedFields.data;
 
+	// log search
+	try {
+		const timestamp = new Date();
+		const details = {};
+		await sql`
+			INSERT INTO guest_logs (id, first, last, action, details, timestamp)
+			VALUES (uuid_generate_v4(), ${first}, ${last}, 'Search', ${JSON.stringify(
+			details
+		)}, ${timestamp.toISOString()})`;
+	} catch (e) {
+		console.error("Database Error:", e);
+		throw new Error("Failed to log search.");
+	}
+
 	try {
 		const guest = await sql<Guest>`
             SELECT *
             FROM guests
             WHERE first = ${first} AND last = ${last};
         `;
-
 		guest_id = guest.rows[0]?.id;
 		RSVPd = guest.rows[0]?.rsvp !== null;
 	} catch (e) {
@@ -101,11 +114,11 @@ const UpdateRSVP = GuestSchema.pick({
 });
 
 export async function updateRSVP(
-	id: string,
-	group_id: number,
+	guest: Guest,
 	prevState: State,
 	formData: FormData
 ) {
+	const { id, group_id, first, last } = guest;
 	const rawFormData = Object.fromEntries(formData.entries());
 	/**
 	 *  rawFormData is the following format:
@@ -174,6 +187,25 @@ export async function updateRSVP(
 				}
 			}
 		}
+	}
+
+	// log RSVP
+	try {
+		const timestamp = new Date();
+		const details = {
+			rsvp,
+			companies: Object.fromEntries(companiesMap),
+			restrictions,
+			message,
+		};
+		await sql`
+			INSERT INTO guest_logs (id, first, last, action, details, timestamp)
+			VALUES (uuid_generate_v4(), ${first}, ${last}, 'RSVP', ${JSON.stringify(
+			details
+		)}, ${timestamp.toISOString()})`;
+	} catch (e) {
+		console.error("Database Error:", e);
+		throw new Error("Failed to log RSVP.");
 	}
 
 	// update the main guest's columns
