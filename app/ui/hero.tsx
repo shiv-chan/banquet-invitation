@@ -38,8 +38,8 @@ export default function Hero() {
 				<p>
 					Kaho and Jade {married ? "had" : "are going to have"} an intimate
 					wedding ceremony in Vancouver on August 29, 2024 with immediate
-					family. To accomodate everyone, we are having a larger wedding banquet
-					in Calgary, and would be thrilled if you can attend.
+					family. To accommodate everyone, we are having a larger wedding
+					banquet in Calgary, and would be thrilled if you could attend.
 				</p>
 			</div>
 		</>

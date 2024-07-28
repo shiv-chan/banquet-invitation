@@ -164,7 +164,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 				</div>
 				<div>
 					<label htmlFor='message' className='font-serif font-bold mb-1 block'>
-						Message
+						Message - Totally optional!
 					</label>
 					<textarea
 						id='message'
