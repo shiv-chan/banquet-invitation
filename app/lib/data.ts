@@ -22,7 +22,7 @@ export async function fetchCompanies(id: string, group_id: number) {
             SELECT *
             FROM guests
             WHERE group_id = ${group_id} AND NOT id = ${id}
-            ORDER BY first, last ASC;
+            ORDER BY self_submitted, first, last ASC;
         `;
 
 		return data.rows;
