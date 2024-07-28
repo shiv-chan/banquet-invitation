@@ -38,6 +38,7 @@ const GuestSchema = z.object({
 		.transform(val => {
 			return val || null;
 		}),
+	self_submitted: z.boolean(),
 });
 
 const SearchGuest = GuestSchema.pick({
@@ -118,7 +119,7 @@ export async function updateRSVP(
 	prevState: State,
 	formData: FormData
 ) {
-	const { id, group_id, first, last } = guest;
+	const { id, group_id, first, last, self_submitted } = guest;
 	const rawFormData = Object.fromEntries(formData.entries());
 	/**
 	 *  rawFormData is the following format:
@@ -173,7 +174,7 @@ export async function updateRSVP(
 					const company_id = key.substring(0, key.indexOf("_"));
 					companiesMap.set(company_id, {
 						...companiesMap.get(company_id),
-						rsvp: true,
+						rsvp: Boolean(Number(rawFormData[key])),
 					});
 				}
 			}
@@ -197,6 +198,7 @@ export async function updateRSVP(
 			companies: Object.fromEntries(companiesMap),
 			restrictions,
 			message,
+			self_submitted,
 		};
 		await sql`
 			INSERT INTO guest_logs (id, first, last, action, details, timestamp)
@@ -213,7 +215,7 @@ export async function updateRSVP(
 		if (!rsvp) restrictions = null;
 		await sql`
 			UPDATE guests
-			SET	rsvp = ${rsvp}, restrictions = ${restrictions}, message = ${message}
+			SET	rsvp = ${rsvp}, restrictions = ${restrictions}, message = ${message}, self_submitted = true
 			WHERE id = ${id}
 		`;
 	} catch (e) {

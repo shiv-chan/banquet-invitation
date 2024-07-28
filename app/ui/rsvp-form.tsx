@@ -6,6 +6,7 @@ import { Guest } from "@/app/lib/definitions";
 import { SubmitButton } from "@/app/ui/button";
 import { updateRSVP, State } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
+import clsx from "clsx";
 
 interface RsvpFormProps {
 	guest: Guest;
@@ -68,18 +69,36 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 					<div>
 						<p className='font-bold'>Joining with:</p>
 						{companies.map(company => (
-							<div key={company.id} className='flex items-center mt-2'>
-								<input
-									id={company.id}
-									name={`${company.id}_rsvp`}
-									type='checkbox'
-									value={1}
-									defaultChecked={company.rsvp != null && company.rsvp}
-									className='h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2'
-								/>
-								<label htmlFor={company.id} className='ml-2 cursor-pointer'>
-									{company.first} {company.last}
-								</label>
+							<div key={company.id}>
+								<div className='flex items-center mt-2'>
+									<input
+										id={company.id}
+										name={`${company.id}_rsvp`}
+										type='checkbox'
+										value={1}
+										defaultChecked={company.rsvp != null && company.rsvp}
+										className='peer h-4 w-4 cursor-pointer disabled:cursor-not-allowed border-gray-300 bg-gray-100 text-gray-600 disabled:bg-slate-300 disabled:hover:!bg-slate-300'
+										disabled={company.self_submitted}
+									/>
+									{company.self_submitted && (
+										<input
+											type='hidden'
+											name={`${company.id}_rsvp`}
+											value={company.rsvp ? 1 : 0}
+										/>
+									)}
+									<label
+										htmlFor={company.id}
+										className='ml-2 cursor-pointer peer-disabled:text-slate-300 peer-disabled:cursor-not-allowed'
+									>
+										{company.first} {company.last}
+									</label>
+								</div>
+								{company.self_submitted && (
+									<div className='font-sans text-xs sm:text-sm text-slate-300'>
+										*This person has already RSVP&apos;d individually.
+									</div>
+								)}
 							</div>
 						))}
 					</div>
@@ -114,7 +133,10 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 						/>
 					</div>
 					{companies.map(company => (
-						<div key={company.id} className='mb-2'>
+						<div
+							key={company.id}
+							className={clsx("mb-2", { hidden: company.self_submitted })}
+						>
 							<label
 								htmlFor={`diet-${company.first}`}
 								className='font-serif mb-1 block'
@@ -127,8 +149,16 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 								rows={1}
 								cols={50}
 								defaultValue={company.restrictions as string}
-								className='font-serif w-full rounded-sm border-2 border-gray-200'
+								className='font-serif w-full rounded-sm border-2 border-gray-200 disabled:text-slate-300'
+								disabled={company.self_submitted}
 							/>
+							{company.self_submitted && (
+								<input
+									type='hidden'
+									name={`${company.id}_diet`}
+									value={company.restrictions || ""}
+								/>
+							)}
 						</div>
 					))}
 				</div>

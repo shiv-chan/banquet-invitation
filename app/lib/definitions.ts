@@ -7,6 +7,7 @@ export type Guest = {
 	rsvp: boolean | null;
 	restrictions: string | null;
 	message: string | null;
+	self_submitted: boolean;
 };
 
 export type Log = {
