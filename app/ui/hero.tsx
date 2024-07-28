@@ -13,7 +13,7 @@ export default function Hero() {
 			<p
 				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2 md:text-left lg:text-2xl`}
 			>
-				To The Wedding Celebration of Kaho & Jade
+				To The Wedding Banquet Celebration of Kaho & Jade
 			</p>
 			<figure className='mb-4'>
 				<Image
@@ -31,14 +31,15 @@ export default function Hero() {
 				</figcaption>
 			</figure>
 			<div className='mb-8 font-serif text-sm sm:text-base md:mb-4'>
+				<p className='mb-4'>
+					We would like to formally invite you to our wedding banquet in Calgary
+					on October 12, 2024.
+				</p>
 				<p>
 					Kaho and Jade {married ? "had" : "are going to have"} an intimate
 					wedding ceremony in Vancouver on August 29, 2024 with immediate
-					family.
-				</p>
-				<p>
-					We would like to formally invite you to our larger wedding banquet in
-					Calgary on October 12, 2024.
+					family. To accomodate everyone, we are having a larger wedding banquet
+					in Calgary, and would be thrilled if you can attend.
 				</p>
 			</div>
 		</>
