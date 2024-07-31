@@ -1,9 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { merriweather } from "@/app/ui/fonts";
 import { rgbDataURL } from "@/app/lib/utils";
 
 export default function Hero() {
-	let caption;
 	const today = new Date() as any;
 	const weddingDate = new Date(2024, 7, 29) as any;
 	const married = weddingDate - today <= 0 ? true : false;
@@ -38,8 +39,9 @@ export default function Hero() {
 				<p>
 					Kaho and Jade {married ? "had" : "are going to have"} an intimate
 					wedding ceremony in Vancouver on August 29, 2024 with immediate
-					family. To accommodate everyone, we are having a larger wedding
-					banquet in Calgary, and would be thrilled if you could attend.
+					family. To celebrate with everyone our special occasion, we are
+					hosting a wedding banquet in Calgary, and would be thrilled if you
+					could attend.
 				</p>
 			</div>
 		</>
