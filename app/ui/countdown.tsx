@@ -1,28 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import { merriweather } from "@/app/ui/fonts";
 import { rgbDataURL } from "@/app/lib/utils";
 
 export default function Countdown() {
-	const today = new Date() as any;
-	const eventDate = new Date(2024, 9, 12, 18) as any;
+	const startHour = 18;
+	const HoursInDays = (1 / 24) * startHour; // hours in days
+	const now = new Date() as any;
+	const eventDate = new Date(2024, 9, 12, startHour) as any;
+	const oneDay = 24 * 60 * 60 * 1000;
+	const diffDays = (eventDate - now) / oneDay;
 
-	const oneDay = 60 * 60 * 24 * 1000;
-	const diffDaysInMill = (eventDate - today) / oneDay;
-
-	let countdown;
-	if (diffDaysInMill >= 1) {
+	console.log(diffDays);
+	let countdown: React.ReactNode;
+	if (diffDays > HoursInDays) {
+		const days: number =
+			diffDays % 1 > HoursInDays ? Math.ceil(diffDays) : Math.floor(diffDays);
+		const isPlural: boolean = days > 1;
 		countdown = (
 			<>
 				<h2 className='uppercase text-lg sm:text-xl lg:text-2xl'>
 					Looking forward to meeting you in...
 				</h2>
 				<p className='italic text-2xl my-3.5 text-center sm:text-[28px] md:my-6 lg:text-3xl'>
-					{Math.floor(diffDaysInMill)} day
-					{Math.floor(diffDaysInMill) > 1 ? "s" : ""}
+					{days} day
+					{isPlural ? "s" : ""}
 				</p>
 			</>
 		);
-	} else if (diffDaysInMill > 0) {
+	} else if (diffDays <= HoursInDays && now.getHours() < startHour) {
 		countdown = (
 			<h2 className='text-lg md:mb-2 sm:text-xl lg:text-2xl'>
 				Looking forward to meeting you tonight!
