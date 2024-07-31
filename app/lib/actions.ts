@@ -198,7 +198,7 @@ export async function updateRSVP(
 			companies: Object.fromEntries(companiesMap),
 			restrictions,
 			message,
-			self_submitted,
+			self_submitted: true,
 		};
 		await sql`
 			INSERT INTO guest_logs (id, first, last, action, details, timestamp)
