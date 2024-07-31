@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 						</a>
 					</p>
 					<p className='mt-2 font-bold italic'>
-						Kindly requested by the 21st of September
+						Kindly requested by the 7th of September
 					</p>
 				</div>
 				{children}

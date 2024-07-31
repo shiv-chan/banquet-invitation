@@ -10,7 +10,7 @@ export default function RSVP() {
 				Save the date
 			</h2>
 			<p className='font-serif text-center text-sm max-w-56 sm:text-base lg:text-base'>
-				Please respond with your availability to attend before the 21st of
+				Please respond with your availability to attend before the 7th of
 				September.
 			</p>
 			<Link
