@@ -18,6 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 					<p>Saturday, October 12, 2024</p>
 					<p className='pl-4'>Doors open at 5:30 pm</p>
 					<p className='pl-4'>Dinner starts at 6:00 pm</p>
+					<p className='pl-4'>Dance 9:00 pm - 11:00 pm</p>
 					<p className='mt-2'>
 						Ginger Beef Bistro House Marlborough in Calgary, Alberta -{" "}
 						<a
