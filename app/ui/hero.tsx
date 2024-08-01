@@ -34,7 +34,7 @@ export default function Hero() {
 			<div className='mb-8 font-serif text-sm sm:text-base md:mb-4'>
 				<p className='mb-4'>
 					We would like to formally invite you to our wedding banquet in Calgary
-					on October 12, 2024.
+					on Saturday, October 12, 2024.
 				</p>
 				<p>
 					Kaho and Jade {married ? "had" : "are going to have"} an intimate

@@ -15,6 +15,8 @@ export default function Details() {
 				Doors open at 5:30 pm
 				<br />
 				Dinner starts at 6:00 pm
+				<br />
+				Dance 9:00 pm - 11:00 pm
 			</p>
 			<div className='text-center my-5 md:my-2 sm:text-base lg:my-3'>
 				<p>Ginger Beef Bistro House Marlborough</p>
