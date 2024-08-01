@@ -38,7 +38,7 @@ export default function Hero() {
 				</p>
 				<p>
 					Kaho and Jade {married ? "had" : "are going to have"} an intimate
-					wedding ceremony in Vancouver on August 29, 2024 with immediate
+					wedding ceremony in Vancouver on August 29, 2024, with immediate
 					family. To celebrate with everyone our special occasion, we are
 					hosting a wedding banquet in Calgary, and would be thrilled if you
 					could attend.
