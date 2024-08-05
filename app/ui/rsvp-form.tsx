@@ -6,6 +6,7 @@ import { Guest } from "@/app/lib/definitions";
 import { SubmitButton } from "@/app/ui/button";
 import { updateRSVP, State } from "@/app/lib/actions";
 import { useFormState } from "react-dom";
+import { useState } from "react";
 import clsx from "clsx";
 
 interface RsvpFormProps {
@@ -18,6 +19,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 	const initialState: State = { message: null, errors: {} };
 	//@ts-ignore
 	const [state, formAction] = useFormState(updateRSVPWithID, initialState);
+	const [accept, setAccept] = useState<boolean | null>(guest.rsvp);
 
 	return (
 		<form action={formAction} className='mt-8 font-serif text-sm sm:text-base'>
@@ -35,6 +37,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 							type='radio'
 							value={1}
 							defaultChecked={guest.rsvp != null && guest.rsvp}
+							onChange={() => setAccept(true)}
 							className='h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2'
 							aria-describedby='rsvp-error'
 						/>
@@ -49,6 +52,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 							type='radio'
 							value={0}
 							defaultChecked={guest.rsvp != null && !guest.rsvp}
+							onChange={() => setAccept(false)}
 							className='h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2'
 							aria-describedby='rsvp-error'
 						/>
@@ -65,7 +69,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 							))}
 					</div>
 				</div>
-				{companies.length ? (
+				{companies.length && accept !== false ? (
 					<div>
 						<p className='font-bold'>Joining with:</p>
 						{companies.map(company => (
@@ -105,63 +109,65 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 				) : (
 					""
 				)}
-				<div>
-					<p className='font-serif font-bold mb-2 block'>
-						Please let us know if there are any dietary restrictions
-						<span className='font-serif font-normal mb-4 block italic'>
-							(*Please leave it blank if you don&apos;t have any)
-						</span>
-					</p>
-					<div className='mb-2'>
-						{companies.length ? (
-							<label
-								htmlFor={`diet-${guest.first}`}
-								className='font-serif mb-1 block'
-							>
-								{guest.first} {guest.last} (Yourself):
-							</label>
-						) : (
-							""
-						)}
-						<textarea
-							id={`diet-${guest.first}`}
-							name='diet'
-							rows={1}
-							cols={50}
-							defaultValue={guest.restrictions as string}
-							className='font-serif w-full rounded-sm border-2 border-gray-200'
-						/>
-					</div>
-					{companies.map(company => (
-						<div
-							key={company.id}
-							className={clsx("mb-2", { hidden: company.self_submitted })}
-						>
-							<label
-								htmlFor={`diet-${company.first}`}
-								className='font-serif mb-1 block'
-							>
-								{company.first} {company.last}:
-							</label>
+				{accept !== false && (
+					<div>
+						<p className='font-serif font-bold mb-2 block'>
+							Please let us know if there are any dietary restrictions
+							<span className='font-serif font-normal mb-4 block italic'>
+								(*Please leave it blank if you don&apos;t have any)
+							</span>
+						</p>
+						<div className='mb-2'>
+							{companies.length ? (
+								<label
+									htmlFor={`diet-${guest.first}`}
+									className='font-serif mb-1 block'
+								>
+									{guest.first} {guest.last} (Yourself):
+								</label>
+							) : (
+								""
+							)}
 							<textarea
-								id={`diet-${company.first}`}
-								name={`${company.id}_diet`}
+								id={`diet-${guest.first}`}
+								name='diet'
 								rows={1}
 								cols={50}
-								defaultValue={company.restrictions as string}
-								className='font-serif w-full rounded-sm border-2 border-gray-200 disabled:text-slate-300'
-								disabled={company.self_submitted}
+								defaultValue={guest.restrictions as string}
+								className='font-serif w-full rounded-sm border-2 border-gray-200'
 							/>
-							{company.self_submitted && (
-								<input
-									type='hidden'
-									name={`${company.id}_diet`}
-									value={company.restrictions || ""}
-								/>
-							)}
 						</div>
-					))}
-				</div>
+						{companies.map(company => (
+							<div
+								key={company.id}
+								className={clsx("mb-2", { hidden: company.self_submitted })}
+							>
+								<label
+									htmlFor={`diet-${company.first}`}
+									className='font-serif mb-1 block'
+								>
+									{company.first} {company.last}:
+								</label>
+								<textarea
+									id={`diet-${company.first}`}
+									name={`${company.id}_diet`}
+									rows={1}
+									cols={50}
+									defaultValue={company.restrictions as string}
+									className='font-serif w-full rounded-sm border-2 border-gray-200 disabled:text-slate-300'
+									disabled={company.self_submitted}
+								/>
+								{company.self_submitted && (
+									<input
+										type='hidden'
+										name={`${company.id}_diet`}
+										value={company.restrictions || ""}
+									/>
+								)}
+							</div>
+						))}
+					</div>
+				)}
 				<div>
 					<label htmlFor='message' className='font-serif font-bold mb-1 block'>
 						Message - Totally optional!
