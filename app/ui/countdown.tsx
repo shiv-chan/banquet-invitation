@@ -12,7 +12,6 @@ export default function Countdown() {
 	const oneDay = 24 * 60 * 60 * 1000;
 	const diffDays = (eventDate - now) / oneDay;
 
-	console.log(diffDays);
 	let countdown: React.ReactNode;
 	if (diffDays > HoursInDays) {
 		const days: number =
@@ -29,7 +28,11 @@ export default function Countdown() {
 				</p>
 			</>
 		);
-	} else if (diffDays <= HoursInDays && now.getHours() < startHour) {
+	} else if (
+		diffDays > 0 &&
+		diffDays <= HoursInDays &&
+		now.getHours() < startHour
+	) {
 		countdown = (
 			<h2 className='text-lg md:mb-2 sm:text-xl lg:text-2xl'>
 				Looking forward to meeting you tonight!
