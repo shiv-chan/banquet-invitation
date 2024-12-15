@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { merriweather } from "@/app/ui/fonts";
-import { rgbDataURL } from "@/app/lib/utils";
+import heroImage from "@/public/homer-st-cafe.jpg";
 
 export default function Hero() {
 	const today = new Date() as any;
@@ -18,13 +18,10 @@ export default function Hero() {
 			</p>
 			<figure className='mb-4'>
 				<Image
-					src='/homer-st-cafe.jpg'
+					src={heroImage}
 					alt='kaho-and-jade-at-cafe'
-					width={1280}
-					height={960}
 					className='w-100 h-72 object-cover sm:h-96  md:h-72'
 					placeholder='blur'
-					blurDataURL={rgbDataURL(181, 181, 181)}
 				/>
 				<figcaption className='font-serif text-[10px] italic sm:text-sm'>
 					{married ? "We married" : "We're going to marry"} on August 29, 2024

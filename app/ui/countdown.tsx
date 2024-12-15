@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { merriweather } from "@/app/ui/fonts";
-import { rgbDataURL } from "@/app/lib/utils";
+import lakeImage from "@/public/moraine-lake.jpg";
 
 export default function Countdown() {
 	const startHour = 18;
@@ -52,13 +52,10 @@ export default function Countdown() {
 		>
 			<div>{countdown}</div>
 			<Image
-				src='/moraine-lake.jpg'
+				src={lakeImage}
 				alt='kaho-and-jade-at-moraine-lake'
-				width={1280}
-				height={720}
 				className='w-32 h-36 object-cover sm:w-56 md:w-full md:h-full'
 				placeholder='blur'
-				blurDataURL={rgbDataURL(181, 181, 181)}
 			/>
 		</div>
 	);
