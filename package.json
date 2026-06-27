@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "test": "dotenv -e .env.test.local -- next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@types/canvas-confetti": "^1.6.4",
     "@vercel/postgres": "^0.9.0",
     "canvas-confetti": "^1.9.3",
