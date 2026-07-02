@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+.env*
+.git
+README.md
+.eslintrc.json
+LICENSE
+next-env.d.ts
