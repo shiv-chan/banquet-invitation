@@ -1,9 +1,9 @@
-import { sql } from "@vercel/postgres";
-import { Guest } from "./definitions";
+import { neon, FullQueryResults} from '@neondatabase/serverless';
+const sql = neon(<string>process.env.DATABASE_URL,  { fullResults: true });
 
 export async function fetchGuest(id: string) {
 	try {
-		const data = await sql<Guest>`
+		const data: FullQueryResults<false> = await sql`
             SELECT *
             FROM guests
             WHERE id = ${id};
@@ -18,7 +18,7 @@ export async function fetchGuest(id: string) {
 
 export async function fetchCompanies(id: string, group_id: number) {
 	try {
-		const data = await sql<Guest>`
+		const data: FullQueryResults<false> = await sql`
             SELECT *
             FROM guests
             WHERE group_id = ${group_id} AND NOT id = ${id}

@@ -1,10 +1,12 @@
 "use server";
 
+import { neon, FullQueryResults} from '@neondatabase/serverless';
+const sql = neon(<string>process.env.DATABASE_URL,  { fullResults: true });
+
 import { z } from "zod";
-import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { Guest } from "./definitions";
+import { Guest, CompanyRSVP } from "./definitions";
 
 const GuestSchema = z.object({
 	id: z.string(),
@@ -87,7 +89,7 @@ export async function searchGuest(prevState: State, formData: FormData) {
 	}
 
 	try {
-		const guest = await sql<Guest>`
+		const guest: FullQueryResults<false> = await sql`
             SELECT *
             FROM guests
             WHERE first = ${first} AND last = ${last};
@@ -127,7 +129,7 @@ export async function updateRSVP(
 	 * 		rsvp: 1 | 0;
 	 * 		diet: string | null;
 	 * 		message: string | null;
-	 * 		[id]_rsvp: 1 | 0;  // if they have companies
+	 * 		[id]_rsvp: 1 | 0; // if they have companies
 	 *      [id]_diet: string: null // if they have companies
 	 * 	}
 	 */
@@ -146,10 +148,7 @@ export async function updateRSVP(
 	}
 
 	let { rsvp, restrictions, message } = validatedFields.data;
-	let companiesMap = new Map<
-		string,
-		{ rsvp?: boolean | null; diet?: string | null }
-	>();
+	let companiesMap: Map<string, CompanyRSVP> = new Map();
 
 	// get the accompanied guests and assign them to companiesMap
 	try {
@@ -226,15 +225,17 @@ export async function updateRSVP(
 	// update the companies' columns
 	try {
 		if (companiesMap.size) {
-			companiesMap.forEach(async (company, key) => {
-				if (!company.rsvp) company.diet = null;
-				await sql`
-					UPDATE guests
-					SET rsvp = ${company.rsvp},
-						restrictions = ${company.diet}
-					WHERE id = ${key}
-				`;
-			});
+			await Promise.all(
+				Array.from(companiesMap, async ([key, val] : [string, CompanyRSVP]) => {
+					if (!val.rsvp) val.diet = null;
+					await sql`
+						UPDATE guests
+						SET rsvp = ${val.rsvp},
+							restrictions = ${val.diet}
+						WHERE id = ${key}
+					`;
+				})
+			);
 		}
 	} catch (e) {
 		console.error("Database Error:", e);
