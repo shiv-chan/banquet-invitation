@@ -18,3 +18,8 @@ export type Log = {
 	details: Object;
 	timestamp: Date;
 };
+
+export type CompanyRSVP = {
+	rsvp?: boolean | null;
+	diet?: string | null;
+};
