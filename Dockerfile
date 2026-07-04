@@ -13,3 +13,5 @@ RUN groupadd -r appuser &&  \
 USER appuser
 
 EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
