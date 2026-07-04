@@ -1,4 +1,4 @@
-name: Push Image
+name: Push Image and Run Test
 
 on:
   push:
@@ -28,6 +28,6 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: .
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/banquet
