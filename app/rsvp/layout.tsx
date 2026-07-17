@@ -15,11 +15,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			</h1>
 			<section className='sm:max-w-[500px] m-auto'>
 				<div className='my-4 font-serif text-sm sm:text-base'>
-					<p>Saturday, October 12, 2024</p>
-					<p className='pl-4'>Doors open at 5:30 pm</p>
-					<p className='pl-4'>Dinner starts at 6:00 pm</p>
-					<p className='pl-4'>Dance 9:00 pm - 11:00 pm</p>
-					<p className='mt-2'>
+					<p data-testid='event-date-time'>Saturday, October 12, 2024</p>
+					<div data-testid='timetable'>
+						<p className='pl-4'>Doors open at 5:30 pm</p>
+						<p className='pl-4'>Dinner starts at 6:00 pm</p>
+						<p className='pl-4'>Dance 9:00 pm - 11:00 pm</p>
+					</div>
+					<p data-testid='venue-info' className='mt-2'>
 						Ginger Beef Bistro House Marlborough in Calgary, Alberta -{" "}
 						<a
 							href='https://maps.google.com/maps?&daddr=228,%2028%20St%20SE%20Calgary,%20AB%20T2A%206J9%20Calgary%20CA'
@@ -29,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 							Map
 						</a>
 					</p>
-					<p className='mt-2 font-bold italic'>
+					<p data-testid='deadline' className='mt-2 font-bold italic'>
 						Kindly requested by the 7th of September
 					</p>
 				</div>

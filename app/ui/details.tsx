@@ -9,7 +9,7 @@ export default function Details() {
 			>
 				The details
 			</h2>
-			<p className='text-center my-5 md:my-2 sm:text-base lg:my-3'>
+			<p data-testid='event-date-time' className='text-center my-5 md:my-2 sm:text-base lg:my-3'>
 				Saturday, October 12, 2024
 				<br />
 				Doors open at 5:30 pm
@@ -18,7 +18,7 @@ export default function Details() {
 				<br />
 				Dance 9:00 pm - 11:00 pm
 			</p>
-			<div className='text-center my-5 md:my-2 sm:text-base lg:my-3'>
+			<div data-testid='venue-info' className='text-center my-5 md:my-2 sm:text-base lg:my-3'>
 				<p>Ginger Beef Bistro House Marlborough</p>
 				<p>228 28 St SE, Calgary, AB T2A 6J9</p>
 			</div>

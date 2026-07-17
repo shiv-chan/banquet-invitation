@@ -70,7 +70,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 					</div>
 				</div>
 				{companies.length && accept !== false ? (
-					<div>
+					<div data-testid='accompanying-guests'>
 						<p className='font-bold'>Joining with:</p>
 						{companies.map(company => (
 							<div key={company.id}>
@@ -99,7 +99,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 									</label>
 								</div>
 								{company.self_submitted && (
-									<div className='font-sans text-xs sm:text-sm text-slate-300'>
+									<div data-testid='self-submitted' className='font-sans text-xs sm:text-sm text-slate-300'>
 										*This person has already RSVP&apos;d individually.
 									</div>
 								)}
@@ -110,7 +110,7 @@ export default function RsvpForm({ guest, companies }: RsvpFormProps) {
 					""
 				)}
 				{accept !== false && (
-					<div>
+					<div data-testid='dietary-restrictions'>
 						<p className='font-serif font-bold mb-2 block'>
 							Please let us know if there are any dietary restrictions
 							<span className='font-serif font-normal mb-4 block italic'>
