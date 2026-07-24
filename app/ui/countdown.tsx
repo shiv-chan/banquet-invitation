@@ -48,6 +48,7 @@ export default function Countdown() {
 
 	return (
 		<div
+			data-testid='countdown'
 			className={`${merriweather.className} font-bold flex items-center gap-x-1 border-b border-b-black border-solid md:border-none pb-5 justify-center sm:gap-x-3 md:flex-col md:pb-4 md:h-full`}
 		>
 			<div>{countdown}</div>

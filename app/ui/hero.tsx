@@ -12,6 +12,7 @@ export default function Hero() {
 	return (
 		<>
 			<p
+				data-testid='event-title'
 				className={`${merriweather.className} uppercase bold text-lg py-1 sm:text-xl sm:text-center sm:py-2 md:text-left lg:text-2xl`}
 			>
 				To The Wedding Banquet Celebration of Kaho & Jade
