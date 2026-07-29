@@ -3,10 +3,10 @@ name: Push Image and Run Test
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
-  push-image:
+  push-image-run-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -30,4 +30,16 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/banquet
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/banquet:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Trigger Playwright Tests
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.FINE_GRAINED_ACCESS_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            https://api.github.com/repos/shiv-chan/banquet-invitation-testing/dispatches \
+            -d '{"event_type":"app-updated", "client_payload":{"image_tag":"${{ github.sha }}"}}'
