@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - test
-      - ci
 
 jobs:
   push-image-run-test:
