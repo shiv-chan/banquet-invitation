@@ -7,7 +7,7 @@ on:
       - ci
 
 jobs:
-  push-image:
+  push-image-run-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -32,6 +32,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/banquet:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Trigger Playwright Tests
         run: |
