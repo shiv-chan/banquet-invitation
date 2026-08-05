@@ -3,50 +3,10 @@
 import { neon, FullQueryResults} from '@neondatabase/serverless';
 const sql = neon(<string>process.env.DATABASE_URL,  { fullResults: true });
 
-import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Guest, CompanyRSVP } from "./definitions";
-
-const GuestSchema = z.object({
-	id: z.string(),
-	group_id: z.coerce.number(),
-	first: z.string().trim().min(1, {
-		message: "Please enter your first name.",
-	}),
-	last: z.string().trim().min(1, {
-		message: "Please enter your last name.",
-	}),
-	rsvp: z
-		.string({
-			invalid_type_error: "Please select an option.",
-		})
-		.transform(val => {
-			if (val === "0") return 0;
-			if (val === "1") return 1;
-		})
-		.pipe(z.coerce.boolean()),
-	restrictions: z
-		.string()
-		.trim()
-		.nullable()
-		.transform(val => {
-			return val || null;
-		}),
-	message: z
-		.string()
-		.trim()
-		.nullable()
-		.transform(val => {
-			return val || null;
-		}),
-	self_submitted: z.boolean(),
-});
-
-const SearchGuest = GuestSchema.pick({
-	first: true,
-	last: true,
-});
+import { SearchGuest, UpdateRSVP } from "./schemas/guestSchema";
 
 export type State = {
 	errors?: {
@@ -109,12 +69,6 @@ export async function searchGuest(prevState: State, formData: FormData) {
 	revalidatePath(`/rsvp/${guest_id}`);
 	redirect(`/rsvp/${guest_id}`);
 }
-
-const UpdateRSVP = GuestSchema.pick({
-	rsvp: true,
-	restrictions: true,
-	message: true,
-});
 
 export async function updateRSVP(
 	guest: Guest,
