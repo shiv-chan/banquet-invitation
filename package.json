@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "dotenv -e .env.test.local -- next dev",
+    "test:jest": "jest",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -17,17 +18,22 @@
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18",
+    "ts-node": "^10.9.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@jest/globals": "^30.4.1",
+    "@jest/types": "^30.4.1",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "jest": "^30.4.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.4.12",
     "typescript": "^5"
   }
 }
