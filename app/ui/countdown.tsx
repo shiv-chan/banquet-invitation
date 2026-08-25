@@ -3,42 +3,34 @@
 import Image from "next/image";
 import { merriweather } from "@/app/ui/fonts";
 import lakeImage from "@/public/moraine-lake.jpg";
+import { getCountdownState, CountdownState } from "@/app/lib/countdown/countdown";
 
 export default function Countdown() {
-	const startHour = 18;
-	const HoursInDays = (1 / 24) * startHour; // hours in days
-	const now = new Date() as any;
-	const eventDate = new Date(2024, 9, 12, startHour) as any;
-	const oneDay = 24 * 60 * 60 * 1000;
-	const diffDays = (eventDate - now) / oneDay;
 
 	let countdown: React.ReactNode;
-	if (diffDays > HoursInDays) {
-		const days: number =
-			diffDays % 1 > HoursInDays ? Math.ceil(diffDays) : Math.floor(diffDays);
-		const isPlural: boolean = days > 1;
+	const now: Date = new Date();
+	const countdownState: CountdownState = getCountdownState(now);
+
+	if (countdownState.state === "before") {
+		const isPlural: boolean = countdownState.days > 1;
+
 		countdown = (
 			<>
 				<h2 className='uppercase text-lg sm:text-xl lg:text-2xl'>
 					Looking forward to meeting you in...
 				</h2>
 				<p className='italic text-2xl my-3.5 text-center sm:text-[28px] md:my-6 lg:text-3xl'>
-					{days} day
 					{isPlural ? "s" : ""}
 				</p>
 			</>
 		);
-	} else if (
-		diffDays > 0 &&
-		diffDays <= HoursInDays &&
-		now.getHours() < startHour
-	) {
+	} else if (countdownState.state === "today") {
 		countdown = (
 			<h2 className='text-lg md:mb-2 sm:text-xl lg:text-2xl'>
 				Looking forward to meeting you tonight!
 			</h2>
 		);
-	} else {
+	} else if (countdownState.state === "after") {
 		countdown = (
 			<h2 className='text-lg sm:text-center md:mb-2 sm:text-xl lg:text-2xl'>
 				Thank you for coming to our celebration!

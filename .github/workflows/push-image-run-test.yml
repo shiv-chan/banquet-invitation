@@ -30,7 +30,9 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/banquet:${{ github.sha }}
+          tags: | 
+            ${{ vars.DOCKERHUB_USERNAME }}/banquet:${{ github.sha }}
+            ${{ vars.DOCKERHUB_USERNAME }}/banquet:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
